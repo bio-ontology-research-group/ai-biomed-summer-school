@@ -994,7 +994,103 @@
   {\tiny IJCAI 2019}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Zero-shot prediction with EL Embeddings}
+  \begin{itemize}
+  \item zero-shot prediction:
+    \begin{itemize}
+    \item no instance of class $C$ is observed
+      \begin{itemize}
+      \item e.g., no protein has {\em ever} been observed with function $C$
+      \end{itemize}
+    \item zero-shot prediction: predict instances of $C$
+      \begin{itemize}
+      \item assumption: $C$ is used in axioms, e.g., $C \sqsubseteq
+        \exists R.D$ or $C \equiv A \sqcap B$
+      \end{itemize}
+    \end{itemize}
+  \item no training data
+    \begin{itemize}
+    \item can we exploit axioms and entailment within the embedding space?
+    \end{itemize}
+  \end{itemize}
+\end{frame}
 
+\begin{frame}
+  \frametitle{Zero-shot prediction with EL Embeddings}
+
+  \centerline{\includegraphics[width=1\textwidth]{deepgozero-eps-converted-to.pdf}}
+
+  \vfill
+  {\tiny
+    Kulmanov \& Hoehndorf, DeepGOZero: Improving protein function
+    prediction from sequence and zero-shot learning based on ontology
+    axioms. ISMB, 2022.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Zero shot protein function prediction}
+  \centerline{
+    \includegraphics[width=.49\textwidth]{annot-terms-eps-converted-to.pdf}
+    \includegraphics[width=.49\textwidth]{zeroshot.pdf}
+    }
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Zero-shot prediction: more general}
+  \begin{block}{Embedding}
+    An embedding is a map (morphism) from one mathematical structure
+    $X$ into another structure $Y$:\\$f : X \xhookrightarrow{} Y$\\
+    such that $X$ is preserved in $Y$.
+  \end{block}
+  \pause
+  \begin{itemize}
+  \item existence of $f^{-1}$ 
+    \begin{itemize}
+    \item inverse embedding
+    \item allows ``extraction'' of $X$ from $Y$
+    \end{itemize}
+  \item formulation of the prediction problem in $X$
+    \begin{itemize}
+    \item e.g., classification: $X \sqsubseteq \exists R.Y$
+    \item loss expressed in terms of $f^{-1}$
+    \end{itemize}
+  \item joint embedding of $X$ and $Z$ in $Y$
+    \begin{itemize}
+    \item $Z$ is a third structure providing external information
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{mOWL}
+  \begin{itemize}
+  \item high-performance software library for machine learning with
+    Semantic Web (OWL) ontologies
+  \item ontology embeddings, zero-shot, constrained optimization
+  \item contains
+    \begin{itemize}
+    \item graph generation (DL2Vec, OWL2Vec*, Taxonomy)
+    \item graph embedding (random walk + word2vec, node2vec, various
+      knowledge graph embedding methods from PyKEEN)
+    \item model-based embeddings (ELEm, EMEl, ELBE)
+    \item category-theoretical embeddings
+    \item FuzzFuzzFuzz ALC embeddings
+    \end{itemize}
+  \item Algorithms written in Python + Scala (OWLAPI), tuned for performance
+  \end{itemize}
+  \url{https://github.com/bio-ontology-research-group/mowl}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Hands-on part}
+  There is a notebook available that shows how to use mOWL with all
+  the methods introduced here. Run the code in the Notebook. When
+  complete, change the task from prediction of PPIs to the prediction
+  of gene--disease associations as in the Semantic Similarity
+  notebook.
+\end{frame}
 
 \end{document}
 %%% Local Variables:
