@@ -10,3 +10,16 @@ summer school in Hannover, 2022. Here you can find
   * [Machine learning with ontologies](slides/mowl.pdf)
 * [Notebooks](notebooks)
 
+## Contributors
+
+The material in these slides was developed over several years with the
+help of many people:
+
+* Imane Boudellioua
+* Michel Dumontier
+* Robert Hoehndorf
+* Andreas Karwath
+* Maxat Kulmanov
+* Paul Schofield
+* Fatima Smaili
+* Fernando Zhapa Camacho
