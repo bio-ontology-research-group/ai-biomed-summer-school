@@ -3,7 +3,7 @@
 \usepackage{pdfpages}
 \usepackage{mathtools}
 \usepackage{enumerate}
-\usepackage{enumitem}
+%\usepackage{enumitem}
 \usepackage{multirow,tabularx}
 \usepackage{booktabs}
 \usepackage{pdfpages}
@@ -33,7 +33,7 @@
 \usepackage{xcolor}
 \usepackage{soul}
 %\usepackage{pstricks}
-%\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{navigation symbols}{}
 
 \newcommand{\myul}[2][blue]{\sethlcolor{#1}\hl{#2}\setulcolor{black}}
 
@@ -42,6 +42,7 @@
 \newcommand<>{\cgray}[3]{\only<#1>{#3}\only<#2>{\textcolor{gray}{#3}}}
 \newcommand<>{\colorize}[4]{\only<#1>{#4}\only<#2>{\textcolor{#3}{#4}}}
 
+%\setbeamertemplate{navigation symbols}{}
 \addtobeamertemplate{navigation symbols}{}{%
     \usebeamerfont{footline}%
     \usebeamercolor[fg]{footline}%
@@ -60,6 +61,14 @@
 {
   \usecolortheme{dove}
 }
+
+% \mode<presentation>
+% {
+% \useinnertheme[shadow=true]{rounded}
+% \useoutertheme{infolines}
+% \usecolortheme{dove}
+% \setbeamerfont{block title}{size={}}
+% }
 
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand{\el}{$\mathcal{EL}^{++}$}
@@ -96,14 +105,14 @@
 %  \pause
   \begin{columns}
     \begin{column}{.5\textwidth}
-      \begin{itemize}[leftmargin=2cm]
+      \begin{itemize} %[leftmargin=2cm]
       \item phenotype
       \item function
       \item disease
       \end{itemize}
     \end{column}
     \begin{column}{.5\textwidth}
-      \begin{itemize}[leftmargin=2cm]
+      \begin{itemize} %[leftmargin=2cm]
       \item genotype
       \item protein sequence
       \item expression
