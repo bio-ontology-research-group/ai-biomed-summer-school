@@ -23,6 +23,7 @@ RUN chmod a+rwx /home/bioonto/
 RUN echo `pwd`
 
 # install JDK
+#RUN sudo apt-get install -y openjdk-11-jdk
 RUN sudo apt-get install -y default-jdk
 
 # Add the conda-forge channel
@@ -32,10 +33,9 @@ RUN conda config --add channels conda-forge
 RUN conda create --name java_env scijava-jupyter-kernel python==3.8
 SHELL ["conda", "run", "-n", "java_env", "/bin/bash", "-c"]
 
-
 ENV PATH=/home/bioonto/.local/bin:${PATH}
 
-RUN pip3 install mowl-borg==0.0.26 torch torchvision numpy pykeen jupyter
+RUN pip3 install mowl-borg==0.0.27 torch torchvision numpy pykeen jupyter
 RUN pip3 install scipy matplotlib tqdm
 #Install BeakerX
 
@@ -88,7 +88,8 @@ WORKDIR /home/bioonto/ai-biomed-summer-school/misc
 
 
 # install grovy dependencies
-#RUN groovy downloadDependencies.groovy
+WORKDIR /home/bioonto/ai-biomed-summer-school/notebooks
+RUN groovy downloadDependencies.groovy
 
 
 
