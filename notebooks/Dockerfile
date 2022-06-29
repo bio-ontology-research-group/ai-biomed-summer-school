@@ -29,31 +29,40 @@ RUN sudo apt-get install -y default-jdk
 RUN conda config --add channels conda-forge
 
 # Create an isolated environment called `java_env` and install the kernel
-RUN conda create --name java_env scijava-jupyter-kernel
+RUN conda create --name java_env scijava-jupyter-kernel python==3.8
+SHELL ["conda", "run", "-n", "java_env", "/bin/bash", "-c"]
 
-# # Activate the `java_env` environment
-# ak RUN source activate java_env
+
+ENV PATH=/home/bioonto/.local/bin:${PATH}
+
+RUN pip3 install mowl-borg==0.0.26 torch torchvision numpy pykeen jupyter
+RUN pip3 install scipy matplotlib tqdm
+#Install BeakerX
+
+#RUN conda install -c beakerx beakerx_all
+RUN pip3 install beakerx
+RUN beakerx install
 
 # install groovy
-RUN sudo apt-get install -y groovy2
+RUN sudo apt-get install -y groovy
 
 
 # download tutorial 
-RUN git clone --recurse-submodules https://github.com/bio-ontology-research-group/ontology-tutorial.git
+RUN git clone --recurse-submodules https://github.com/bio-ontology-research-group/ai-biomed-summer-school.git
 
 # generally switch down to the right working directory
-WORKDIR /home/bioonto/ontology-tutorial
+WORKDIR /home/bioonto/ai-biomed-summer-school
 
 # into the directory and update
 RUN git pull 
 
-# get data 
-RUN wget http://aber-owl.net/aber-owl/diseasephenotypes/ontology/ontology-tutorial.tar.gz
-RUN tar xvfz ontology-tutorial.tar.gz
-
-RUN gunzip phenomenet-inferred.owl.gz
+# get data
+WORKDIR /home/bioonto/ai-biomed-summer-school/notebooks
+RUN wget leechuck.de/data.tgz
+RUN tar xvfz data.tgz
 
 # hack to clean grape directoty - as advertised at https://github.com/lappsgrid-incubator/galaxy-appliance/issues/4 and https://stackoverflow.com/questions/16871792/groovy-grab-download-failed
+
 # if this fails, have to remove dependency from downloadDependencies.groovy for now. 
 RUN rm -rf /home/bioonto/.groovy/grapes
 
@@ -67,20 +76,26 @@ RUN sudo chown -R bioonto:bioonto /home/bioonto/.groovy
 RUN jupyter kernelspec list
 
 # trust the notebook
-RUN jupyter trust /home/bioonto/ontology-tutorial/ontology-analysis.ipynb
+RUN jupyter trust /home/bioonto/ai-biomed-summer-school/notebooks/mowl-embeddings.ipynb
+RUN jupyter trust /home/bioonto/ai-biomed-summer-school/notebooks/semantic-similarity.ipynb
 
 # additional data (vectors)
-WORKDIR /home/bioonto/ontology-tutorial/misc
-RUN wget http://jagannath.pdn.cam.ac.uk/tutorial/phenome-vec-small.txt.gz
+WORKDIR /home/bioonto/ai-biomed-summer-school/misc
 
-WORKDIR /home/bioonto/ontology-tutorial
+# link not working (time out)
+#RUN wget http://jagannath.pdn.cam.ac.uk/tutorial/phenome-vec-small.txt.gz
+
+
 
 # install grovy dependencies
-RUN groovy downloadDependencies.groovy
+#RUN groovy downloadDependencies.groovy
 
 
-RUN pip3 install torch torchvision numpy pykeen jupyter
 
+WORKDIR /home/bioonto/ai-biomed-summer-school
+# Launch BeakerX
+
+CMD beakerx --ip=0.0.0.0 --port=8888 --NotebookApp.token='' --NotebookApp.password=''
 
 # Launch in Juyter notebook
 
