@@ -64,7 +64,7 @@
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand{\el}{$\mathcal{EL}^{++}$}
 
-\title[Ontologies]{Part 2: Machine learning with ontologies}
+\title[Ontologies]{Part 2: Machine learning with biomedical ontologies}
 
 \author{Robert Hoehndorf}
 
@@ -1002,6 +1002,7 @@
     \item no instance of class $C$ is observed
       \begin{itemize}
       \item e.g., no protein has {\em ever} been observed with function $C$
+      \item e.g., no individual has {\em ever} been observed with disease $C$
       \end{itemize}
     \item zero-shot prediction: predict instances of $C$
       \begin{itemize}
@@ -1028,14 +1029,14 @@
     axioms. ISMB, 2022.}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Zero shot protein function prediction}
-  \centerline{
-    \includegraphics[width=.49\textwidth]{annot-terms-eps-converted-to.pdf}
-    \includegraphics[width=.49\textwidth]{zeroshot.pdf}
-    }
+% \begin{frame}
+%   \frametitle{Zero shot protein function prediction}
+%   \centerline{
+%     \includegraphics[width=.49\textwidth]{annot-terms-eps-converted-to.pdf}
+%     \includegraphics[width=.49\textwidth]{zeroshot.pdf}
+%     }
   
-\end{frame}
+% \end{frame}
 
 \begin{frame}
   \frametitle{Zero-shot prediction: more general}

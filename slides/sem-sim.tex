@@ -97,6 +97,8 @@
 \begin{frame}
   \frametitle{Learning goals}
   \begin{itemize}
+  \item brief overview of ontologies in biomedicine
+  \item semantic similarity with ontologies
   \item machine learning with ontologies as {\em features} (or
     background knowledge)
   \item unsupervised or supervised:
@@ -172,13 +174,20 @@
 \begin{frame}
   \frametitle{Ontologies for data integration}
 
-annotation
+  \begin{itemize}
+  \item standard identifiers (IRIs)
+  \item labels of classes and relations
+  \item human-readable descriptions
+  \item axioms
+  \end{itemize}
   
 \end{frame}
 
 \begin{frame}
   \frametitle{Ontologies provide domain knowledge}
 
+  \centerline{\includegraphics[width=.85\textwidth]{bcellapoptosis.png}}
+  
   
 \end{frame}
 
@@ -211,16 +220,63 @@ annotation
 
 \begin{frame}
   \frametitle{Reasoning with ontologies}
-
+  \begin{itemize}
+  \item {\tt 'B cell apoptosis' EquivalentTo: apoptosis and 'occurs
+      in' some 'B cell'}
+  \item {\tt 'lymphocyte apoptosis' EquivalentTo: apoptosis and 'occurs
+      in' some lymphocyte}
+  \item {\tt 'B cell' SubClassOf: lymphocyte}
+    \pause
+  \item {\tt 'B cell apoptosis' SubClassOf: 'lymphocyte apoptosis'}
+  \end{itemize}
   
 \end{frame}
 
 \begin{frame}
-  \frametitle{Questions we answer with reasoning}
-
-  
+  \frametitle{Reasoning with phenotype ontologies}
+  Phenotype ontology:
+  \begin{itemize}
+  \item A phenotype is a quality that inheres in its bearer:
+    \begin{itemize}
+    \item Enlarged heart:
+      $Enlarged(x) \land \exists y ( inheresIn(x,y) \land Heart(y))$
+    \item in DL: $Enlarged \sqcap \exists inheresIn.Heart$
+  \item Enlarged: reuse an ontology of qualities (PATO)
+  \item Heart: reuse ontology of (human, mammalian) anatomy
+  \end{itemize}
+\end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{UberPheno, PhenomeNET}
+  \centerline{\includegraphics[width=.8\textwidth]{uberpheno.png}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{BLAST-like search over phenotypes}
+  Using ontologies and reasoning, we can
+  \begin{enumerate}
+  \item describe phenotypes computationally
+    \begin{itemize}
+    \item morphology
+    \item function
+    \item $\Rightarrow$ ontologies
+    \end{itemize}
+  \item integrate/compare phenotypes {\em within and between species}
+    (to overcome limitations in phenotype data)
+    \begin{itemize}
+    \item homologous organ structures
+    \item related/identical function
+    \item $\Rightarrow$ ontologies and automated reasoning
+    \end{itemize}
+  \item measure phenotypic similarity
+    \begin{itemize}
+    \item use morphological or functional similarity
+    \item similarity in attribute values
+    \item $\Rightarrow$ semantic similarity, machine learning
+    \end{itemize}
+  \end{enumerate}
+\end{frame}
 
 \section{Ontologies and graphs}
 
@@ -1131,6 +1187,12 @@ annotation
     \item phenotype: HPO, MP, CPO, WBPhenotype, FBCV, MeSH, ...
     \item chemical: ChEBI, MeSH, DrOn, RXNorm, DrugBank, ...
     \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Applications of semantic similarity}
+  \begin{itemize}
   \item needs mapping, alignment, or integration
     \begin{itemize}
     \item mapping: given a term $t$, find corresponding class in
