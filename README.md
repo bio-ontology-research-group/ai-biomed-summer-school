@@ -10,6 +10,10 @@ summer school in Hannover, 2022. Here you can find
   * [Machine learning with ontologies](slides/mowl.pdf)
 * [Notebooks](notebooks)
 
+You can use Docker to run the notebooks, using
+`docker run -i -t -p 8888:8888 leechuck/ai-biomed-summer-school`
+and then use your browser to connect to `http://localhost:8888`.
+
 ## Contributors
 
 The material in these slides was developed over several years with the
