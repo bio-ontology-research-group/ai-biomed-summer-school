@@ -35,7 +35,7 @@ SHELL ["conda", "run", "-n", "java_env", "/bin/bash", "-c"]
 
 ENV PATH=/home/bioonto/.local/bin:${PATH}
 
-RUN pip3 install mowl-borg==0.0.27 torch torchvision numpy pykeen jupyter
+RUN pip3 install mowl-borg==0.0.28 torch torchvision numpy pykeen jupyter
 RUN pip3 install scipy matplotlib tqdm
 #Install BeakerX
 
