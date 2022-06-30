@@ -229,6 +229,7 @@
   \item {\tt 'B cell' SubClassOf: lymphocyte}
     \pause
   \item {\tt 'B cell apoptosis' SubClassOf: 'lymphocyte apoptosis'}
+    \pause
     \begin{itemize}
     \item generates a {\em taxonomy} from axioms
     \end{itemize}
@@ -237,15 +238,19 @@
 
 \begin{frame}
   \frametitle{Reasoning with phenotype ontologies}
-  Phenotype ontology:
+  Defining phenotypes:
   \begin{itemize}
   \item A phenotype is a quality that inheres in its bearer:
     \begin{itemize}
     \item Enlarged heart:
       $Enlarged(x) \land \exists y ( inheresIn(x,y) \land Heart(y))$
     \item in DL: $Enlarged \sqcap \exists inheresIn.Heart$
-  \item Enlarged: reuse an ontology of qualities (PATO)
-  \item Heart: reuse ontology of (human, mammalian) anatomy
+  \item Enlarged: use an ontology of qualities (PATO)
+  \item Heart: use ontology of (human, mammalian) anatomy
+    \begin{itemize}
+    \item Uberon: multi-species anatomy ontology (homology between
+      anatomical structures)
+    \end{itemize}
   \end{itemize}
 \end{itemize}
 \end{frame}
@@ -253,6 +258,86 @@
 \begin{frame}
   \frametitle{UberPheno, PhenomeNET}
   \centerline{\includegraphics[width=.8\textwidth]{uberpheno.png}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tetralogy of Fallot}
+  \centerline{\includegraphics[height=.8\textheight]{tetralogy.png}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tetralogy of Fallot}
+  \framesubtitle{Human phenotypes}
+  \begin{itemize}
+  \item Overriding aorta ({\tt HP:0002623})
+  \item Ventricular septal defect ({\tt HP:0001629})
+  \item Pulmonic stenosis ({\tt HP:0001642})
+  \item Right ventricular hypertrophy ({\tt HP:0001667})
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tetralogy of Fallot}
+  \framesubtitle{Phenotype description syntax}
+  Overriding aorta ({\tt HP:0002623}):
+  \begin{itemize}
+  \item Q: overlap with ({\tt PATO:0001590})
+  \item E1: Aorta ({\tt FMA:3734})
+  \item E2: Membranous part of interventricular septum ({\tt
+      FMA:7135})
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tetralogy of Fallot}
+  \framesubtitle{Phenotype description syntax}
+  Overriding aorta ({\tt HP:0002623}):
+  \begin{itemize}
+  \item Q: overlap with ({\tt PATO:0001590})
+  \item E1: Aorta ({\tt FMA:3734})
+  \item E2: Membranous part of interventricular septum ({\tt
+      FMA:7135})
+  \end{itemize}
+  {\tt HP:0002623 EquivalentTo: \\
+    \hspace{.5cm}has-part some (FMA:3734 and\\
+    \hspace{.5cm}has-quality some (PATO:0001590 and towards some\\
+    \hspace{.5cm}FMA:7135)))}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tetralogy of Fallot}
+  \framesubtitle{UBERON human-mouse anatomy equivalences}
+  Overriding aorta ({\tt HP:0002623}):
+  \begin{itemize}
+  \item Q: overlap with ({\tt PATO:0001590})
+  \item E1: Aorta ({\tt FMA:3734})
+    \begin{itemize}
+    \item {\tt FMA:3734 EquivalentTo: MA:0000062} (Uberon)
+    \end{itemize}
+  \item E2: Membranous part of interventricular septum ({\tt
+      FMA:7135})
+    \begin{itemize}
+    \item {\tt FMA:7135 EquivalentTo: MA:0002939} (Uberon)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tetralogy of Fallot}
+  \framesubtitle{Phenotype equivalence}
+  Overriding aorta ({\tt MP:0000273}):
+  \begin{itemize}
+  \item Q: overlap with ({\tt PATO:0001590})
+  \item E1: Aorta ({\tt MA:0000062})
+  \item E2: Membranous interventricular septum ({\tt
+      MA:0002939})
+  \end{itemize}
+  {\tt MP:0000273 EquivalentTo: \\
+    \hspace{.5cm}has-part some (MA:0000062 and\\
+    \hspace{.5cm}has-quality some (PATO:0001590 and towards some\\
+    \hspace{.5cm}MA:0002939)))}\\
+  \pause
+  Consequence: {\tt MP:00000273 EquivalentTo: HP:0002623}
 \end{frame}
 
 \begin{frame}
